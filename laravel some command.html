@@ -1,0 +1,23 @@
+php artisan make:middleware <middleware-name>
+php artisan clear-compiled 
+composer dump-autoload
+php artisan optimize
+
+
+php artisan migrate --path='./database/migrations/2024_03_13_040959_create_permission_tables.php'
+php artisan migrate --path=/database/migrations/test/
+
+
+///
+git remote rm origin
+git remote add origin git@github.com:username/myapp.git
+
+Migrate
+php artisan migrate --path=/database/migrations/fileName.php
+php artisan migrate --path='./database/migrations/2024_03_13_040959_create_permission_tables.php'
+Roolback
+php artisan migrate:rollback --path=/database/migrations/fileName.php
+Refresh
+php artisan migrate:refresh --path=/database/migrations/fileName.php
+Seeder
+php artisan db:seed --class=classNameTableSeeder
