@@ -24,3 +24,12 @@ php artisan db:seed --class=classNameTableSeeder
 
 //////controller///////
 php artisan make:controller Api/CommonController -r
+
+/////// Menu Item ////////
+Route::get('menu-item', [MenuItemController::class, 'index'])->name('menu-item');
+Route::get('menu-item/add', [MenuItemController::class, 'add'])->name('menu-item.add');
+Route::post('menu-item/save', [MenuItemController::class, 'save'])->name('menu-item.save');
+Route::get('menu-item/edit/{id}', [MenuItemController::class, 'edit'])->name('menu-item.edit');
+Route::post('menu-item/update', [MenuItemController::class, 'update'])->name('menu-item.update');
+Route::delete('menu-item/delete/{id}', [MenuItemController::class, 'delete'])->name('menu-item.delete');
+Route::get('menu-item/view/{id}', [MenuItemController::class, 'view'])->name('menu-item.view'); 
