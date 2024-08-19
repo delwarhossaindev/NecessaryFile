@@ -24,6 +24,8 @@ php artisan db:seed --class=classNameTableSeeder
 
 //////controller///////
 php artisan make:controller Api/CommonController -r
+///Model////
+  
 
 /////// Menu Item ////////
 Route::get('menu-item', [MenuItemController::class, 'index'])->name('menu-item');
@@ -40,3 +42,30 @@ php artisan optimize
 
   FlashGate@222#
   Ecommerce@30#Mis
+  
+/////syntex///////////
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'item_name' => 'required|string|max:191',
+            'model' => 'nullable|string|max:191',
+            'qty' => 'nullable|numeric',
+            'unit_price' => 'nullable|numeric',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        try {
+            DB::beginTransaction();
+
+        
+
+            DB::commit();
+            return response()->json(['message' => 'Created successfully', 'item' => $item], 201);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['error' => 'Failed to create item', 'message' => $e->getMessage()], 500);
+        }
+    }
