@@ -3,6 +3,8 @@ php artisan clear-compiled
 composer dump-autoload
 php artisan optimize
 
+  php artisan storage:link
+
 
 php artisan migrate --path='./database/migrations/2024_03_13_040959_create_permission_tables.php'
 php artisan migrate --path=/database/migrations/test/
