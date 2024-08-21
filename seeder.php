@@ -41,9 +41,16 @@ php artisan migrate:fresh --seed
 php artisan migrate:fresh --seed --seeder=UserSeeder
 
   ////////////////////////////////////////////////////////////////////Package\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-  https://packagist.org/packages/tyghaykal/laravel-seed-generator
+1  https://packagist.org/packages/tyghaykal/laravel-seed-generator
+2  https://github.com/orangehill/iseed
 ...........install..........
+ 1
   composer require tyghaykal/laravel-seed-generator
+ 2
+ composer require orangehill/iseed
+
+ Orangehill\Iseed\IseedServiceProvider::class,
 ..........command...........
-  php artisan seed:generate --table-mode --tables=model_has_permissions,model_has_roles,password_reset_tokens,permissions,personal_access_tokens,roles,role_has_permissions  
+1 php artisan iseed my_table,another_table
+ 2 php artisan seed:generate --table-mode --tables=model_has_permissions,model_has_roles,password_reset_tokens,permissions,personal_access_tokens,roles,role_has_permissions  
 
