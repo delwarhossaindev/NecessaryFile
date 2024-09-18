@@ -1,0 +1,131 @@
+https://github.com/mccarlosen/laravel-mpdf
+
+ Mccarlosen\LaravelMpdf\LaravelMpdfServiceProvider::class
+
+ 'PDF' => Mccarlosen\LaravelMpdf\Facades\LaravelMpdf::class
+
+\\192.168.100.160\d$\wamp64\www\vision_bc\vendor\mpdf\mpdf\src\Config\FontVariables.php
+	"nikosh" => [
+					'R' => "Nikosh.ttf",
+					'useOTL' => 0xFF,
+				],
+\\192.168.100.160\d$\wamp64\www\vision_bc\vendor\mpdf\mpdf\ttfonts
+
+use PDF;
+
+ public function get_invoice(Request $request)
+    {
+        $validated = Validator::make($request->all(), [
+            "invoices" => "required",
+        ]);
+
+        if ($validated->fails()) {
+            return response(
+                [
+                    "message" => $validated->errors(),
+                    "status" => "error",
+                ],
+                200
+            );
+        }
+
+        $invoicesConvertToArray = json_decode($request->invoices);
+
+        $invoicesDuplicate = [];
+
+        foreach ($invoicesConvertToArray as $value) {
+            $invoicesDuplicate[] = $value->invoice;
+            $invoicesDuplicate[] = $value->invoice;
+        }
+        $invoices = $invoicesDuplicate;
+
+
+        try {
+            $data = [];
+            if (isset($invoices)) {
+                foreach ($invoices as $invoice) {
+                    $data[] = [
+                        'master_info' => DB::select("SELECT
+                        oim.InvoiceID,
+                        oim.InvoiceNo,
+                        FORMAT(oim.OrderDate, 'dd-MM-yyyy', 'en-US') AS OrderDate,
+                        oim.InvoiceDiscount,
+                        oim.CustomerCode,
+                        c.CustomerName,
+                        c.Add1,
+                        c.Phone,
+                        Oim.DistributorCode,
+						d.DBMastername AS DistributorName,
+                        b.BeatName,
+                        S.SRName,
+                        S.Mobile AS SRMobile,
+                        oim.BeatCode,
+                        FORMAT(DATEADD(day, 1, oim.OrderDate), 'dd-MM-yyyy', 'en-US') AS DeliveryAddDate
+                        FROM
+                        OrderInvoiceMaster oim
+                        INNER JOIN
+                        Customer c ON c.CustomerCode = oim.CustomerCode
+						INNER JOIN
+                        DBMasterCode d ON d.MasterCode = oim.DistributorCode
+                        INNER JOIN
+                        Beat b ON b.BeatCode = oim.BeatCode
+                        INNER JOIN
+                        SR s ON s.SRCode = oim.SRCode
+                        WHERE oim.InvoiceID = $invoice"),
+
+                        'details_info' => DB::select("SELECT DISTINCT oid.InvoiceID,
+                        oid.UnitPrice,
+                        oid.SalesQTY,
+                        oid.ProductCode,
+                        oid.UnitPrice * oid.SalesQTY AS amount,
+                        pb.ProductNameBangla AS ProductName,
+                        oid.BonusQTY,
+                        oid.Discount
+                        FROM OrderInvoiceDetails oid
+                        INNER JOIN SDMSProduct p ON p.ProductCode = oid.ProductCode
+                        INNER JOIN ProductBangla pb ON pb.ProductCode = oid.ProductCode
+                        WHERE oid.InvoiceID  =  $invoice"),
+
+                        'update' =>  DB::update("UPDATE OrderInvoiceMaster SET PrintedDate = GETDATE() WHERE InvoiceID = $invoice"),
+
+                    ];
+                }
+            }
+
+            $mpdf = new \Mpdf\Mpdf([
+                'default_font' => 'nikosh',
+            ]);
+
+
+            $htmlContent = view('invoice_report', compact('data'))->render();
+
+
+            $mpdf->WriteHTML($htmlContent);
+
+
+            $content = $mpdf->Output('', \Mpdf\Output\Destination::STRING_RETURN);
+
+            $currentDateTime = date('Y-m-d_H-i-s');
+
+            $userId = Auth::id();
+
+            $filename = 'public/' . $userId . '_' . $currentDateTime . '_invoice_report.pdf';
+
+            Storage::put($filename, $content);
+
+            return response(json_encode([
+                "download_link" => url('/storage/' . $userId . '_' . $currentDateTime . '_invoice_report.pdf'),
+                "message" => "Invoice Report Generate",
+                "status" => "success",
+            ], JSON_UNESCAPED_SLASHES))->header('Content-Type', "application/json");
+        } catch (\Exception $e) {
+
+            return response(
+                [
+                    "message" => $e->getMessage(),
+                    "status" => "error",
+                ],
+                403
+            );
+        }
+    }
