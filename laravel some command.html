@@ -38,6 +38,14 @@ Route::post('menu-item/update', [MenuItemController::class, 'update'])->name('me
 Route::delete('menu-item/delete/{id}', [MenuItemController::class, 'delete'])->name('menu-item.delete');
 Route::get('menu-item/view/{id}', [MenuItemController::class, 'view'])->name('menu-item.view'); 
 
+  Route::prefix('tasks')->group(function () {
+    Route::post('/', [TaskController::class, 'store']);
+    Route::get('/', [TaskController::class, 'index']);
+    Route::get('{id}', [TaskController::class, 'show']);
+    Route::put('{id}', [TaskController::class, 'update']);
+    Route::delete('{id}', [TaskController::class, 'destroy']);
+});
+
 php artisan clear-compiled 
 composer dump-autoload
 php artisan optimize
