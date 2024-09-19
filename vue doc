@@ -1,5 +1,5 @@
 https://vuejs.org/guide/quick-start
-
+.
 1.npm create vue@latest
 2.cd <your-project-name>
 npm install
