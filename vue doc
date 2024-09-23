@@ -4,3 +4,6 @@ https://vuejs.org/guide/quick-start
 2.cd <your-project-name>
 npm install
 npm run dev
+
+npm install admin-lte@^3.2 --save
+
