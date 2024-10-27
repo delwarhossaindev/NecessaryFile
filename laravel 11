@@ -9,4 +9,7 @@ composer create-project laravel/laravel example-app
 ];
 3.php artisan optimize:clear
 4. php artisan migrate
-5.use Spatie\Permission\Traits\HasRoles;
+5.use Spatie\Permission\Traits\HasRoles;(in model)
+//API
+1.php artisan install:API
+2.use Laravel\Sanctum\HasApiTokens;(in model)
