@@ -8,4 +8,4 @@ composer create-project laravel/laravel example-app
     Spatie\Permission\PermissionServiceProvider::class,
 ];
 3.php artisan optimize:clear
-4.
+4. php artisan migrate
