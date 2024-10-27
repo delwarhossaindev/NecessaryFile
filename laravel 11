@@ -10,6 +10,22 @@ composer create-project laravel/laravel example-app
 3.php artisan optimize:clear
 4. php artisan migrate
 5.use Spatie\Permission\Traits\HasRoles;(in model)
+5.1. Route::group(['middleware' => 'guest'], function () {
+    Route::get('login', [AuthController::class, 'index'])->name('login');
+    Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
+    Route::get('registration', [AuthController::class, 'registration'])->name('register');
+    Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
+  });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::redirect('/', "login");
+    Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+  });
 //API
-1.php artisan install:API
+1.php artisan install:api
 2.use Laravel\Sanctum\HasApiTokens;(in model)
+3.Route::middleware('auth:sanctum')->group(function () {
+
+});
