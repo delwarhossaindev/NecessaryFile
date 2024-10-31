@@ -7,6 +7,7 @@ composer create-project laravel/laravel example-app
     // ...
     Spatie\Permission\PermissionServiceProvider::class,
 ];
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
 3.php artisan optimize:clear
 4. php artisan migrate
 5.use Spatie\Permission\Traits\HasRoles;(in model)
