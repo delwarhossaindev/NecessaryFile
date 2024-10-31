@@ -4,45 +4,43 @@ project-root/
 │   ├── Exceptions/
 │   ├── Http/
 │   │   ├── Controllers/
-│   │   │   ├── AdminController.php        # Your admin panel controller
-│   │   ├── Middleware/
-│   │   └── Requests/
-│   ├── Models/
-│   ├── Providers/
-│   └── Policies/
+│   │   │   ├── AdminController.php       # Main admin panel controller
+│   │   └── Middleware/
+│   └── Models/
 ├── bootstrap/
 ├── config/
+│   └── app.php                           # Configuration files (app, database, etc.)
 ├── database/
+│   ├── migrations/
+│   └── seeders/
 ├── public/
-│   ├── adminlte/                          # AdminLTE assets (dist, plugins)
+│   ├── adminlte/                         # AdminLTE assets (dist, plugins)
 │   │   ├── dist/
 │   │   └── plugins/
-│   ├── css/
-│   ├── js/
-│   ├── storage/
-│   └── index.php
+│   ├── css/                              # Custom CSS for frontend
+│   ├── js/                               # Custom JavaScript for frontend
+│   └── index.php                         # Laravel entry point
 ├── resources/
 │   ├── views/
 │   │   ├── layouts/
-│   │   │   └── admin.blade.php            # Main AdminLTE layout file
+│   │   │   └── admin.blade.php           # Main AdminLTE layout file
 │   │   ├── partials/
-│   │   │   ├── navbar.blade.php           # Navbar partial
-│   │   │   ├── sidebar.blade.php          # Sidebar partial
-│   │   │   └── footer.blade.php           # Footer partial
-│   │   ├── dashboard.blade.php            # Dashboard page
-│   │   ├── auth/                          # Authentication views (login, register, etc.)
-│   └── js/
-│       └── app.js                         # Custom JavaScript
-│       └── custom.js                      # Additional custom scripts
-│   └── css/
-│       └── custom.css                     # Additional custom styles
+│   │   │   ├── navbar.blade.php          # Navbar partial
+│   │   │   ├── sidebar.blade.php         # Sidebar partial
+│   │   │   └── footer.blade.php          # Footer partial
+│   │   └── dashboard.blade.php           # Dashboard view
+│   ├── js/
+│   │   └── app.js                        # Custom JavaScript for backend/frontend
+│   ├── css/
+│   │   └── custom.css                    # Custom CSS for backend/frontend
 ├── routes/
-│   ├── web.php                            # Web routes for the application
-│   └── api.php
+│   ├── web.php                           # Web routes for the application
+│   ├── api.php                           # API routes for the application
+│   └── admin.php                         # Optional: Separate routes for admin
 ├── storage/
 ├── tests/
 ├── vendor/
-├── .env                                   # Environment configuration file
-├── artisan                                # Artisan CLI
-├── composer.json                          # Composer dependencies
-└── package.json                           # NPM dependencies (if using Node)
+├── .env                                  # Environment configuration file
+├── artisan                               # Artisan CLI
+├── composer.json                         # Composer dependencies
+└── package.json                          # NPM dependencies
