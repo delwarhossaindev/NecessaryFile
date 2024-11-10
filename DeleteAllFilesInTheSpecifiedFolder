@@ -1,1 +1,39 @@
+step-1
+php artisan make:command CleanAttachmentsFolder
+
+step-2
+->filepath: app/Console/Commands/CleanAttachmentsFolder.php
+->filecode:
+<?php
+
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
+
+class CleanAttachmentsFolder extends Command
+{
+    // Define the command signature
+    protected $signature = 'attachments:clean';
+
+    // Command description
+    protected $description = 'Delete all files in the attachments folder';
+
+    // Handle the command execution
+    public function handle()
+    {
+        $directory = storage_path('app/public/attachments');
+
+        // Check if the directory exists
+        if (File::isDirectory($directory)) {
+            File::cleanDirectory($directory); // Deletes all files in the folder
+            $this->info('Attachments folder cleaned successfully.');
+        } else {
+            $this->error('Attachments directory does not exist.');
+        }
+    }
+}
+step-3
+php artisan attachments:clean
+
 
