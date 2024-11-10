@@ -1,1 +1,42 @@
+step-1
+php artisan make:command ClearLog
+step-2
+->file_path: app/Console/Commands/ClearLog.php 
+->file_code:
+<?php
+
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
+
+class ClearLog extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'clear:log';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Clear the Laravel log file';
+
+    /**
+     * Execute the console command.
+     */
+    public function handle()
+    {
+        File::put(storage_path('logs/laravel.log'), ''); // Clears the log file
+        $this->info('Log file cleared successfully.');
+    }
+}
+step-3
+php artisan clear:log
+
+
 
