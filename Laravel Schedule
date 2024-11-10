@@ -12,6 +12,8 @@ if is need:
 Create a batch file laravel-scheduler.bat with the following content:
 
 cd /d D:\xampp\htdocs\crm-backend
+php artisan schedule:work
+INFO  Running scheduled tasks every minute.
 php artisan schedule:run
 
 
