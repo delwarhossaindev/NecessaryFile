@@ -1,0 +1,51 @@
+For vision_bc:
+<VirtualHost *:80>
+    ServerName webapps.acibd.com
+    DocumentRoot /path/to/your/project/vision_bc/public
+
+    <Directory /path/to/your/project/vision_bc/public>
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+For vision_food:
+<VirtualHost *:80>
+    ServerName food.webapps.acibd.com
+    DocumentRoot /path/to/your/project/vision_food/public
+
+    <Directory /path/to/your/project/vision_food/public>
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+
+Example .htaccess for both sites:
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    RewriteEngine On
+
+    RewriteCond %{HTTP:Authorization} ^(.+)$
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    RewriteCond %{REQUEST_FILENAME} -d [OR]
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ ^$1 [N]
+
+    RewriteCond %{REQUEST_URI} (\.\w+$) [NC]
+    RewriteRule ^(.*)$ public/$1
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
