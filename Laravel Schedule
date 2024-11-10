@@ -8,6 +8,11 @@ app\Console\Kernel.php
          // Schedule `clear:log` command to run weekly
          $schedule->command('clear:log')->weekly();
     }
+if is need:
+Create a batch file laravel-scheduler.bat with the following content:
+
+cd /d D:\xampp\htdocs\crm-backend
+php artisan schedule:run
 
 
 
