@@ -225,3 +225,6 @@ RewriteRule ^.* - [F,L]
 </IfModule>
 
 
+https://github.com/renatomarinho/laravel-page-speed
+
+
