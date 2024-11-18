@@ -226,5 +226,6 @@ RewriteRule ^.* - [F,L]
 
 
 https://github.com/renatomarinho/laravel-page-speed
+https://github.com/spatie/laravel-responsecache
 
 
