@@ -1,3 +1,4 @@
+https://www.youtube.com/watch?v=cOfDNVle1y0&list=PLR2Aa0TfWLK4E7mABNSGvRziOjx7bKKYq&index=1
 RewriteEngine On
 RewriteCond %{HTTP_USER_AGENT} ^BlackWidow [OR]
 RewriteCond %{HTTP_USER_AGENT} ^Bot\ mailto:faheem13apr@gmail.com [OR]
