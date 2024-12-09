@@ -13,3 +13,44 @@ sudo apt-get install redis
 sudo service redis-server start
 
 redis-cli 
+-------useful link
+https://www.youtube.com/watch?v=nB7zi88DB1Y
+https://www.youtube.com/watch?v=jWX-tJc0hjA
+-------------------------------------------------
+*****pc restart******
+
+Step 2: In Laravel 11
+install
+composer require predis/predis
+
+Set Up Laravel Configuration:
+Ensure your Laravel .env file has the correct settings:
+env
+CACHE_DRIVER=redis
+SESSION_DRIVER=redis
+REDIS_HOST=127.0.0.1
+REDIS_PORT=6379
+
+php artisan o:c
+
+Configure Laravel for Redis Sessions
+---Update Laravel .env File: Set Redis as the session driver in your .env file:
+.env
+SESSION_DRIVER=redis
+CACHE_DRIVER=redis
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+---Update config/session.php: Ensure the session configuration file uses the Redis driver:
+'driver' => env('SESSION_DRIVER', 'file'),
+
+php artisan o:c
+
+// In a controller or route
+session(['key' => 'value']);
+return session('key'); // Should return "value"
+
+
+
