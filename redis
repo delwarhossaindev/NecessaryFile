@@ -1,4 +1,4 @@
---------------------------------------------install--------------------------------------------
+--------------------------------------------install With subsystem linux--------------------------------------------
 wsl --install
 
 wsl -l -v
@@ -51,6 +51,24 @@ php artisan o:c
 // In a controller or route
 session(['key' => 'value']);
 return session('key'); // Should return "value"
+
+--------------------------------------------install With Docker--------------------------------------------
+---download software
+https://www.docker.com/
+--WSL
+https://learn.microsoft.com/en-us/windows/wsl/install
+--redis.io
+https://redis.io/docs/latest/operate/oss_and_stack/install/install-stack/docker/
+--docker-compose.yml create
+https://github.com/delwarhossaindev/laravel11WithRedis/blob/main/docker-compose.yml
+--command run
+docker-compose up -d
+---check connection
+http://localhost:8010/redis-stack/browser
+
+*****all Redis project setup according to to Laravel
+
+
 
 
 
