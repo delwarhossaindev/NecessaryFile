@@ -76,3 +76,28 @@ https://www.youtube.com/watch?v=urisGIi_pmE&t=1668s
 
 
 
+
+
+
+
+
+
+$ docker ps
+CONTAINER ID   IMAGE                      COMMAND            CREATED          STATUS          PORTS                                            NAMES
+81a6541d2954   redis/redis-stack:latest   "/entrypoint.sh"   13 minutes ago   Up 13 minutes   0.0.0.0:6380->6379/tcp, 0.0.0.0:8010->8001/tcp   redis-stack
+$ docker-compose ps
+time="2024-12-10T23:41:07+06:00" level=warning msg="C:\\xampp\\htdocs\\laravelWithRedis\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+NAME          IMAGE                      COMMAND            SERVICE              CREATED          STATUS          PORTS
+redis-stack   redis/redis-stack:latest   "/entrypoint.sh"   redis-stack-server   15 minutes ago   Up 15 minutes   0.0.0.0:6380->6379/tcp, 0.0.0.0:8010->8001/tcp
+$ docker-compose down
+time="2024-12-10T23:58:39+06:00" level=warning msg="C:\\xampp\\htdocs\\laravelWithRedis\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+[+] Running 2/2
+ ✔ Container redis-stack             Remove...                         0.4s 
+ ✔ Network laravelwithredis_default  Removed                           0.3s 
+
+
+
+
+
+
+
