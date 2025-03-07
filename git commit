@@ -9,3 +9,11 @@ git push -u origin main
 
 publicsshkey:
 https://www.youtube.com/watch?v=lV5mrUYsucU&t=311s
+
+1.ssh-keygen
+enter
+enter
+enter
+2.cat /c/Users/delwar/.ssh/id_ed25519.pub
+then copy
+3.github.com->setting->ssh->add ssh->
