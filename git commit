@@ -6,3 +6,6 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/delwarhossaindev/DynamicDatabaseConnection.git
 git push -u origin main
+
+publicsshkey:
+https://www.youtube.com/watch?v=lV5mrUYsucU&t=311s
