@@ -1,0 +1,21 @@
+step-1
+php.in---------extension=intl uncommand
+composer create-project "laravel/laravel:^10.0" example-app
+step-2		
+version 3.x											
+composer require livewire/livewire
+php artisan livewire:publish --config
+php artisan livewire:layout
+step-3
+database setting
+step-4
+install-------------
+composer require filament/filament:"^3.3" -W
+php artisan filament:install --panels
+php artisan make:filament-user
+
+clear----------
+php artisan filament:optimize
+php artisan filament:optimize-clear
+Publishing----------
+php artisan vendor:publish --tag=filament-config
