@@ -1,3 +1,9 @@
+Checkout Demo
+Go to https://merchantdemo.sandbox.bka.sh/frontend/checkout/version/1.2.0-beta
+Wallet Number: 01770618575
+OTP: 123456
+Pin: 12121
+
 // bKash API-তে রিকুয়েস্ট পাঠানোর জন্য ব্যবহৃত হেডার
 $header = [
     "Content-Type: application/json", // API এর কনটেন্ট টাইপ
