@@ -1,0 +1,39 @@
+// bKash API-তে রিকুয়েস্ট পাঠানোর জন্য ব্যবহৃত হেডার
+$header = [
+    "Content-Type: application/json", // API এর কনটেন্ট টাইপ
+    "Authorization: eyJraWQiOiJvTVJzNU9ZY0wrUnRXQ2o3ZEJtdlc5VDBEcytrckw5M1NzY0VqUzlERXVzPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlODNlMDkwMC1jY2ZmLTQzYTctODhiNy0wNjE5NDJkMT...", // Authorization টোকেন
+    "X-APP-Key: 4f6o0cjiki2rfm34kfdadl1eqq", // bKash অ্যাপের কীগুলি
+    "X-Amz-Date: 2025-08-29T17:59:13+00:00" // API রিকুয়েস্ট সময়
+];
+
+// রিকুয়েস্টে পাঠানো ডেটা (পেমেন্ট আইডি এবং অন্যান্য তথ্য)
+$request = [
+    "paymentID" => "TR00110oA2j8G1756490283324", // পেমেন্ট আইডি
+    "status" => "success", // পেমেন্ট স্ট্যাটাস
+    "signature" => "9s6TfdB6G0", // সিগনেচার (যা bKash থেকে এসেছে)
+    "apiVersion" => "1.2.0-beta/" // API ভার্সন
+];
+
+// পেমেন্ট আইডি সহ JSON ডেটা
+$body_data_json = json_encode([
+    "paymentID" => "TR00110oA2j8G1756490283324" // পেমেন্ট আইডি
+]);
+
+// bKash API থেকে প্রাপ্ত সফল রেসপন্স
+$response = json_encode([
+    "paymentID" => "TR00110oA2j8G1756490283324", // পেমেন্ট আইডি
+    "trxID" => "CHT70NBWID", // ট্রানজেকশন আইডি
+    "transactionStatus" => "Completed", // ট্রানজেকশন স্ট্যাটাস
+    "amount" => "510", // পেমেন্ট অ্যামাউন্ট
+    "currency" => "BDT", // মুদ্রা
+    "intent" => "sale", // পেমেন্ট ইন্টেন্ট (sale)
+    "paymentExecuteTime" => "2025-08-29T23:59:16:392 GMT+0600", // পেমেন্ট এক্সিকিউট টাইম
+    "merchantInvoiceNumber" => "CO_AC4GSJQ9PNVMZboh3DXK", // ইনভয়েস নম্বর
+    "payerType" => "Customer", // পেয়ার টাইপ
+    "payerReference" => "3_@APP12345_@1_@7", // পেয়ার রেফারেন্স (অর্ডার বা ব্যবহারকারীর আইডি)
+    "customerMsisdn" => "01770618575", // গ্রাহকের মোবাইল নম্বর
+    "payerAccount" => "01770618575", // পেয়ার অ্যাকাউন্ট
+    "maxRefundableAmount" => "510", // সর্বোচ্চ রিফান্ডযোগ্য পরিমাণ
+    "statusCode" => "0000", // স্ট্যাটাস কোড (0000 মানে সফল)
+    "statusMessage" => "Successful" // স্ট্যাটাস বার্তা
+]);
