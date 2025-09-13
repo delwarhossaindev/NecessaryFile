@@ -79,3 +79,5 @@ php artisan optimize
             return response()->json(['error' => 'Failed to create item', 'message' => $e->getMessage()], 500);
         }
     }
+
+  php artisan make:migration add_colunm_updated_by_from_subscriptions --table=subscriptions
